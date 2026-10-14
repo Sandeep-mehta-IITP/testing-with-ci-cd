@@ -16,6 +16,10 @@ test("should return zero for 100% discount", () => {
   expect(calculateDiscount(1000, 100)).toBe(0);
 });
 
+test("CI should detect a failing test", () => {
+  expect(2 + 2).toBe(5);
+});
+
 
 test("mock function should return configured value", () => {
   const paymentMock = jest.fn().mockResolvedValue({
