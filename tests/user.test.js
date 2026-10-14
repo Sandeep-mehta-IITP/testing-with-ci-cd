@@ -89,4 +89,11 @@ describe("Users API Test", () => {
 
     expect(response.status).toBe(404);
   });
+
+  test("GET /health returns 200", async () => {
+    const response = await request(app).get("/health");
+
+    expect(response.status).toBe(200);
+    expect(response.body.status).toBe("OK");
+  });
 });

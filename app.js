@@ -7,6 +7,11 @@ app.use(express.json());
 let users = [];
 let nextId = 1;
 
+// Root endpoint
+app.get("/", (req, res) => {
+  res.send("My Testing App is running!");
+});
+
 // create user
 app.post("/users", (req, res) => {
     const {name, email } = req.body;
@@ -97,6 +102,15 @@ app.delete("/users/:id", (req, res) => {
 
   return res.status(204).send();
 });
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Application is healthy"
+  });
+});
+
 
 export { app }
 
