@@ -107,7 +107,7 @@ app.delete("/users/:id", (req, res) => {
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "OK",
-    message: "Application is healthy"
+    message: "Application is healthy version 2.0"
   });
 });
 
