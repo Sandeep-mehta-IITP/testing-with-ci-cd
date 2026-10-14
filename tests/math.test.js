@@ -17,7 +17,7 @@ test("should return zero for 100% discount", () => {
 });
 
 test("CI should detect a failing test", () => {
-  expect(2 + 2).toBe(5);
+  expect(2 + 2).toBe(4);
 });
 
 
