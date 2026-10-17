@@ -28,9 +28,21 @@ jobs:
       - name: Run tests
         run: npm test
 
+  docker-build:
+    name: Build Docker Image
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t testing-with-ci-cd:${{ github.sha }} .
+
   deploy:
     name: Deploy to Render
-    needs: test
+    needs: [test, docker-build]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
