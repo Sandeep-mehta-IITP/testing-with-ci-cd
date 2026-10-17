@@ -7,6 +7,26 @@ app.use(express.json());
 let users = [];
 let nextId = 1;
 
+
+
+app.use((req, res, next) => {
+  const startTime = Date.now();
+
+  res.on("finish", () => {
+    console.log(JSON.stringify({
+      level: "INFO",
+      message: "http_request",
+      method: req.method,
+      path: req.path,
+      statusCode: res.statusCode,
+      durationMs: Date.now() - startTime
+    }));
+  });
+
+  next();
+});
+
+
 // Root endpoint
 app.get("/", (req, res) => {
   res.send("My Testing App is running!");
